@@ -71,7 +71,7 @@ dp-cgans gen --help
 You can also use the library with docker:
 
 ```bash
-docker run --rm -v $(pwd):/data sunchang0124/dp-cgans gen /data/example_tabular_data_UCIAdult.csv --epochs 2 --output /data/out.csv --gen-size 100
+docker run --rm -v $(pwd):/data ensaremirerol/dp-cgans gen /data/example_tabular_data_UCIAdult.csv --epochs 2 --output /data/out.csv --gen-size 100
 ```
 
 -   `-v $(pwd):/data` mounts the current directory into the containers `/data`
@@ -81,7 +81,7 @@ docker run --rm -v $(pwd):/data sunchang0124/dp-cgans gen /data/example_tabular_
     `--gpus device=0` for a specific GPU) to the `docker run` command.
 
 ```bash
-docker run --rm --gpus all -v $(pwd):/data sunchang0124/dp-cgans gen /data/example_tabular_data_UCIAdult.csv --epochs 2 --output /data/out.csv --gen-size 100
+docker run --rm --gpus all -v $(pwd):/data ensaremirerol/dp-cgans gen /data/example_tabular_data_UCIAdult.csv --epochs 2 --output /data/out.csv --gen-size 100
 ```
 
 ### 🐍 Use with python
