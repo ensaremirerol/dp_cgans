@@ -31,6 +31,9 @@ def cli_gen(
     output: str = typer.Option(
         "synthetic_samples.csv", help="Path to the output"
     ),
+    index_col: str = typer.Option(
+        "yes", help="Index column"
+    ),
     generator_output: str | None = typer.Option(
         None, help="Path to the generator output"
     ),
@@ -60,11 +63,10 @@ def cli_gen(
     if verbose:
         print(f"🧪 Model fitted, sampling...")
     sample = model.sample(gen_size)
-
-    # Drop index column
-    sample = sample.drop(columns=sample.columns[0])
-
-    sample.to_csv(output, index=False)
+    sample.to_csv(
+        output,
+        index=True if index_col.lower() == "yes" else False,
+    )
     if verbose:
         print(
             f"✅ Samples generated in {BOLD}{GREEN}{output}{END}"
