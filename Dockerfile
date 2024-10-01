@@ -11,9 +11,13 @@ RUN apt-get update && \
     pip install --upgrade pip && \
     rm -rf /var/lib/apt/lists/*
 
-RUN pip --default-timeout=1000 install dp-cgans==${DP_CGANS_VERSION} \
-    matplotlib==${MATPLOTLIB_VERSION} rdt==${RDT_VERSION} \
-    sdv==${SDV_VERSION}
+RUN mkdir /dp-cgans
 
+COPY . /dp-cgans
+
+RUN pip --default-timeout=1000 install /dp-cgans \
+    matplotlib==${MATPLOTLIB_VERSION} rdt==${RDT_VERSION} \
+    sdv==${SDV_VERSION} \
+    && rm -rf /dp-cgans
 
 ENTRYPOINT ["dp-cgans"]
